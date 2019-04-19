@@ -80,23 +80,28 @@ describe("executing removeFbclid", () => {
         removeFbclid(mockWindow);
         expect(mockWindow.location.href).toBeUndefined();
       });
+      test("does not crash or alter URL for non string URL (not really doable though)", () => {
+        const mockWindow = mockWindowSpec.factoryFunction(123);
+        removeFbclid(mockWindow);
+        expect(mockWindow.location.href).toEqual(123);
+      });
       test("does not crash or alter URL for empty URL", () => {
         const mockWindow = mockWindowSpec.factoryFunction("");
         removeFbclid(mockWindow);
-        expect(mockWindow.location.href).toBe("");
+        expect(mockWindow.location.href).toEqual("");
       });
       test("does not alter a URL without the fbclid parameter", () => {
         testDataWithoutFbclidParam.forEach(testData => {
           const mockWindow = mockWindowSpec.factoryFunction(testData.initial);
           removeFbclid(mockWindow);
-          expect(mockWindow.location.href).toBe(testData.final);
+          expect(mockWindow.location.href).toEqual(testData.final);
         });
       });
       test("does alter a URL with the fbclid parameter", () => {
         testDataWithFbclidParam.forEach(testData => {
           const mockWindow = mockWindowSpec.factoryFunction(testData.initial);
           removeFbclid(mockWindow);
-          expect(mockWindow.location.href).toBe(testData.final);
+          expect(mockWindow.location.href).toEqual(testData.final);
         });
       });
     });
