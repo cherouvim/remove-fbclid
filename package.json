@@ -1,6 +1,6 @@
 {
   "name": "remove-fbclid",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Removes the fbclid parameter from the URL which is appended by facebook",
   "main": "index.js",
   "scripts": {
