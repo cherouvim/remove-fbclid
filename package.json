@@ -1,22 +1,28 @@
 {
   "name": "remove-fbclid",
-  "version": "0.5.1",
+  "version": "0.9.0",
   "description": "Removes the fbclid parameter from the URL which is appended by facebook",
   "main": "index.js",
   "scripts": {
-    "test": "node test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cherouvim/remove-fbclid.git"
   },
   "keywords": [
-    "fbclid"
+    "fbclid",
+    "facebook",
+    "tracking",
+    "seo"
   ],
   "author": "Ioannis Cherouvim",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cherouvim/remove-fbclid/issues"
   },
-  "homepage": "https://github.com/cherouvim/remove-fbclid#readme"
+  "homepage": "https://github.com/cherouvim/remove-fbclid#readme",
+  "devDependencies": {
+    "jest": "24.7.1"
+  }
 }
