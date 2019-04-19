@@ -5,7 +5,11 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?color=0c0)](https://github.com/prettier/prettier)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?color=0c0)](https://opensource.org/licenses/MIT)
 
-Removes the parameter `fbclid` that facebook adds on some shared URLs. More info about that parameter:
+Removes the parameter `fbclid` that facebook adds on some shared URLs.
+
+The `fbclid` parameter will be removed via a `window.history.replaceState` on [current browsers](https://caniuse.com/#search=replacestate) and via `window.location.replace` on older ones.
+
+More info about that parameter:
 - https://fbclid.com/
 - https://stackoverflow.com/q/52847475/72478
 
