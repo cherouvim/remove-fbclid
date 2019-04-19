@@ -4,7 +4,7 @@
   "description": "Removes the fbclid parameter from the URL which is appended by facebook",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
