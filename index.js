@@ -1,7 +1,7 @@
 "use strict";
 
-function removeFbclid(window = window) {
-  const currentHref = window.location.href;
+function removeFbclid(theWindow = window) {
+  const currentHref = theWindow.location.href;
   if (!currentHref) return;
   if (typeof currentHref !== "string") return;
 
@@ -21,10 +21,10 @@ function removeFbclid(window = window) {
   const params = query.split("&").filter(param => !param.startsWith("fbclid="));
 
   const newHref = url + (params.length ? "?" + params.join("&") : "") + (hash !== undefined ? "#" + hash : "");
-  if (window.history && window.history.replaceState) {
-    window.history.replaceState(undefined, undefined, newHref);
+  if (theWindow.history && theWindow.history.replaceState) {
+    theWindow.history.replaceState(undefined, undefined, newHref);
   } else {
-    window.location.replace(newHref);
+    theWindow.location.replace(newHref);
   }
 }
 module.exports = removeFbclid;
