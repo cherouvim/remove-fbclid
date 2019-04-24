@@ -27,5 +27,12 @@ import removeFbclid from "remove-fbclid";
 removeFbclid();
 ```
 
+## Other tips (unrelated to this JavaScript library)
+Add the following in your `/robots.txt` to prevent indexing:
+```
+User-agent: *
+Disallow: /?fbclid*
+```
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
