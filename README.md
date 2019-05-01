@@ -1,5 +1,6 @@
 # remove-fbclid
 [![npm version](https://img.shields.io/npm/v/remove-fbclid.svg?color=0c0)](https://www.npmjs.com/package/remove-fbclid)
+[![build size](https://badgen.net/bundlephobia/minzip/remove-fbclid?color=0c0)](https://bundlephobia.com/result?p=remove-fbclid)
 [![travis](https://img.shields.io/travis/cherouvim/remove-fbclid.svg?color=0c0)](https://travis-ci.org/cherouvim/remove-fbclid)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=0c0)](http://makeapullrequest.com)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?color=0c0)](https://github.com/prettier/prettier)
