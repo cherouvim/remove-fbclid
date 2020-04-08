@@ -2,10 +2,12 @@ const removeFbclid = require("./index.js");
 
 const getMockedWindowWithoutHistory = href => {
   const mockedWindow = {
+    replaceExecutionsCount: 0,
     location: {
       href: href,
       replace: function(url) {
         mockedWindow.location.href = url;
+        mockedWindow.replaceExecutionsCount++;
       }
     }
   };
@@ -14,12 +16,14 @@ const getMockedWindowWithoutHistory = href => {
 
 const getMockedWindowWithHistory = href => {
   const mockedWindow = {
+    replaceExecutionsCount: 0,
     location: {
       href: href
     },
     history: {
       replaceState: function(a, b, url) {
         mockedWindow.location.href = url;
+        mockedWindow.replaceExecutionsCount++;
       }
     }
   };
@@ -67,7 +71,6 @@ const testDataWithFbclidParam = [
   { initial: "http://example.com/foo?a=1&b=2&fbclid=___", final: "http://example.com/foo?a=1&b=2" },
   { initial: "http://example.com/foo?fbclid=a&a=fbclid&b=2", final: "http://example.com/foo?a=fbclid&b=2" },
   { initial: "http://example.com/foo?fbclid=123&a=1", final: "http://example.com/foo?a=1" },
-  { initial: "http://example.com/foo?a=1&b=2", final: "http://example.com/foo?a=1&b=2" },
   { initial: "http://example.com/foo?fbclid=123&a=1&b=2#", final: "http://example.com/foo?a=1&b=2#" },
   { initial: "http://example.com/foo?a=1&fbclid=123&b=2#baz", final: "http://example.com/foo?a=1&b=2#baz" }
 ];
@@ -93,14 +96,24 @@ describe("executing removeFbclid", () => {
       test("does not alter a URL without the fbclid parameter", () => {
         testDataWithoutFbclidParam.forEach(testData => {
           const mockWindow = mockWindowSpec.factoryFunction(testData.initial);
+          // Keep track of how many times replace has been called.
+          const replaceExecutionsCount = mockWindow.replaceExecutionsCount;
           removeFbclid(mockWindow);
+          // Ensure that replace was not called.
+          expect(mockWindow.replaceExecutionsCount).toEqual(replaceExecutionsCount);
+          // Ensure that URL remained the same.
           expect(mockWindow.location.href).toEqual(testData.final);
         });
       });
       test("does alter a URL with the fbclid parameter", () => {
         testDataWithFbclidParam.forEach(testData => {
           const mockWindow = mockWindowSpec.factoryFunction(testData.initial);
+          // Keep track of how many times replace has been called.
+          const replaceExecutionsCount = mockWindow.replaceExecutionsCount;
           removeFbclid(mockWindow);
+          // Ensure that replace was called once.
+          expect(mockWindow.replaceExecutionsCount).toEqual(replaceExecutionsCount + 1);
+          // Ensure that URL changed to the expected one.
           expect(mockWindow.location.href).toEqual(testData.final);
         });
       });

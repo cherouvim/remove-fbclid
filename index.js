@@ -21,6 +21,8 @@ function removeFbclid(theWindow = window) {
   const params = query.split("&").filter(param => !param.startsWith("fbclid="));
 
   const newHref = url + (params.length ? "?" + params.join("&") : "") + (hash !== undefined ? "#" + hash : "");
+ 	if (currentHref === newHref) return;
+
   if (theWindow.history && theWindow.history.replaceState) {
     theWindow.history.replaceState(undefined, undefined, newHref);
   } else {
